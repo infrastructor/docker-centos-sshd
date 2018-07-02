@@ -8,4 +8,6 @@ before_install:
  
 script: 
  - docker build -t infrastructor/centos-sshd:0.0.2 . 
+ - docker tag infrastructor/centos-sshd:latest infrastructor/centos-sshd:0.0.2
  - docker push infrastructor/centos-sshd:0.0.2
+ - docker push infrastructor/centos-sshd:latest
