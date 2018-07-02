@@ -7,7 +7,8 @@ before_install:
  - docker login --username=$U --password=$P
  
 script: 
- - docker build -t infrastructor/centos-sshd:0.0.2 . 
- - docker tag infrastructor/centos-sshd:latest infrastructor/centos-sshd:0.0.2
+ - docker build -t infrastructor/centos-sshd . 
+ - docker tag infrastructor/centos-sshd infrastructor/centos-sshd:0.0.2
+ - docker tag infrastructor/centos-sshd infrastructor/centos-sshd:latest
  - docker push infrastructor/centos-sshd:0.0.2
  - docker push infrastructor/centos-sshd:latest
