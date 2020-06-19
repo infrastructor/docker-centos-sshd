@@ -1,7 +1,6 @@
 FROM centos:7
 MAINTAINER infrastructor.io
 
-#RUN yum update
 RUN yum install sudo openssh-server openssh-client -y
 RUN mkdir /var/run/sshd
 RUN useradd -ms /bin/bash devops
@@ -15,6 +14,9 @@ ADD sudoers /etc/sudoers
 
 RUN ssh-keygen -t rsa -f /etc/ssh/ssh_host_rsa_key
 RUN sed -i 's/PermitRootLogin prohibit-password/PermitRootLogin yes/' /etc/ssh/sshd_config
+RUN sed -i 's/UsePAM yes/UsePAM no/' /etc/ssh/sshd_config
+RUN sed -i 's/#UseDNS yes/UseDNS no/' /etc/ssh/sshd_config
+RUN sed -i 's/GSSAPIAuthentication yes/GSSAPIAuthentication no/' /etc/ssh/sshd_config
 
 ADD authorized_keys /root/.ssh/authorized_keys
 ADD authorized_keys /home/devops/.ssh/authorized_keys
